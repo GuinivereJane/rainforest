@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_action :ensure_logged_in, only: [:create, :new]
+
+
   def new
   end
 
@@ -8,6 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to products_url, notice: "logged in !!"
     else
+      flash.now[:alert] = "Invalid email or password"
       render "new"
     end
 

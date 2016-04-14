@@ -1,9 +1,15 @@
 class ProductsController < ApplicationController
+  skip_before_action :ensure_logged_in, only: [:show, :indexrr]
+
+
   def index
     @products = Product.all
   end
   def show
     @product = Product.find(params[:id])
+    if current_user
+      @review = @product.reviews.build
+    end
   end
   def new
     @product = Product.new
@@ -24,11 +30,12 @@ class ProductsController < ApplicationController
       if @product.update_attributes(product_params)
         redirect_to product_path(@product)
       else
-        render :edir
+        render :edit
     end
   end
   def destroy
     @product = Product.find(params[:id])
+    #@product.reviews.destroy
     @product.destroy
     redirect_to products_url
   end

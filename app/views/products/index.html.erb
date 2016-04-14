@@ -1,8 +1,10 @@
 <h1>Products</h1>
 <%=link_to "Create a new product", new_product_path%>
 
-<% @products.each do |f| %>
-  <p><%= link_to "NAME : #{f.name}", product_path(f)%> </p>
-  <p>DESCRIPTIOM : <%=f.description%></p>
-  <p>PRICE IN CENTS : <%=f.formatted_price%></p>
+<% @products.each do |product|%>
+<div class = flex-container>
+  <div class = "flex-item"><%= link_to "NAME : #{product.name}", product_path(product)%> </div>
+  <div class = "flex-item">DESCRIPTION : <%=product.description%></div>
+  <div class = "flex-item">PRICE IN CENTS : <%=product.formatted_price%></div>
+</div>
 <%end%>
