@@ -1,10 +1,13 @@
 <h1>Products</h1>
-<%=link_to "Create a new product", new_product_path%>
 
-<% @products.each do |product|%>
-<div class = flex-container>
-  <div class = "flex-item"><%= link_to "NAME : #{product.name}", product_path(product)%> </div>
-  <div class = "flex-item">DESCRIPTION : <%=product.description%></div>
-  <div class = "flex-item">PRICE IN CENTS : <%=product.formatted_price%></div>
+<%= form_tag products_path, method: :get, authentication: false, id: 'search-form' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<div id="products">
+  <%= render @products %>
 </div>
-<%end%>
+
+
+<%=link_to "Create a new product", new_product_path%>
