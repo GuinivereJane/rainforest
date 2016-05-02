@@ -6,8 +6,9 @@ class ProductsController < ApplicationController
     @products = if params[:search]
        Product.where("LOWER(name) LIKE LOWER(?)", "%#{params[:search]}%")
      else
-       Product.all
+        Product.all
      end
+     @products = @products.order('products.created_at DESC').page(params[:page])
 
   respond_to do |format|
      format.html
@@ -20,6 +21,7 @@ class ProductsController < ApplicationController
       @review = @product.reviews.build
     end
   end
+
   def new
     @product = Product.new
   end

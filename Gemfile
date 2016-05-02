@@ -4,6 +4,10 @@ source 'https://rubygems.org'
 # To use ActiveModel has_secure_password
   gem 'bcrypt', '~> 3.1.10'
 
+
+  gem 'kaminari'
+
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
